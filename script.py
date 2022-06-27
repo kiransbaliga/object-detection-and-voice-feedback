@@ -4,7 +4,9 @@ import time
 import cv2
 import os
 import speech_recognition as sr
-from gtts import gTTS
+# from gtts import gTTS
+import pyttsx3
+
 
 
 # python script.py --i images/15.png --y yolo3
@@ -115,8 +117,7 @@ if len(idxs) > 0:
 		list1.append(H_pos + W_pos + LABELS[classIDs[i]])
 
 	description = ', '.join(list1)
-
-	myobj = gTTS(text=description, lang="en", slow=False)
-
-	myobj.save("object_detection.mp3")
-
+	print(description)
+	engine = pyttsx3.init()
+	engine.save_to_file(description, 'test.mp3')
+	engine.runAndWait()
